@@ -4,23 +4,7 @@
 
   {% csrf_token %}
 
-  <!-- <p>
-    <label for="id_titulo">Título:</label>
-    <input type="text" name="titulo" id="id_titulo", value="{{post.titulo}}" />
-  </p>
-  <p>
-    <label for="id_livro">Livro:</label>
-    <input type="text" name="livro" id="id_livro" value="{{post.livro}}" />
-  </p>
-  <p>
-    <label for="id_autor_livro">Autor:</label>
-    <input type="text" name="autor_livro" id="id_autor_livro" value="{{post.autor_livro}}" />
-  </p>
-  <p>
-    <label for="id_conteudo">Conteudo:</label>
-    <input type="text" name="conteudo" id="id_conteudo" value="{{post.conteudo}}" />
-  </p> -->
-  {{form}}
+  {{form.as_p}}
 
   <button type="submit">Atualizar</button>
 </form>
