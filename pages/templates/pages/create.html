@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+
+<form method="POST" action="{% url 'pages:createPost' %}">
+  
+  {% csrf_token %}
+  <h3>Criar uma nova resenha</h3>
+
+  <p>
+    <label for="id_titulo">Título:</label>
+    <input type="text" name="titulo" id="id_titulo" />
+  </p>
+  <p>
+    <label for="id_livro">Livro:</label>
+    <input type="text" name="livro" id="id_livro" />
+  </p>
+  <p>
+    <label for="id_autor_livro">Autor:</label>
+    <input type="text" name="autor_livro" id="id_autor_livro" />
+  </p>
+  <p>
+    <label for="id_conteudo">Conteudo:</label>
+    <input type="text" name="conteudo" id="id_conteudo" />
+  </p>
+
+
+  <button type="submit">Criar</button>
+</form>
+{% endblock content %}

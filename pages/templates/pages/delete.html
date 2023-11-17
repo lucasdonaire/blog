@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<form method="POST" action="{% url 'pages:deletePost' post.id %}">
+  
+  {% csrf_token %}
+
+  <p>
+    Deletar o post {{post.titulo}}?
+  </p>
+  
+  <p>
+    <label for="deletar"><input type="checkbox" id="deletar" name="deletar" required> Sim, desejo deletar</label>
+  </p>
+
+  <button type="submit">Executar</button>
+</form>
+{% endblock content %}

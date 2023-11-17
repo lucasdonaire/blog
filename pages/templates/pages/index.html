@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<p>
+  <a href="{% url 'pages:createPost' %}">Adicionar uma resenha</a>
+</p>
+{% if post_list %}
+<section>
+  {% for post in post_list %}
+  <div class="article-box">
+    <article>
+      {{post.id}}
+      <a href="{% url 'pages:detail' post.id %}"> Ver Post</a>
+      <a href="{% url 'pages:updatePost' post.id %}"> Editar Post</a>
+      <a href="{% url 'pages:deletePost' post.id %}"> Deletar Post</a>
+      <h2>Resenha: {{ post.titulo }}</h2>
+      <h3>Livro: {{ post.livro }}</h3>
+      <h3>Autor: {{ post.autor_livro }}</h3>
+    </article>
+  </div>
+  {% endfor %}
+</section>
+{% else %}
+<p>Não foi encontrada nenhuma resenha.</p>
+{% endif %} 
+{% endblock content %}

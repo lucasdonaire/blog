@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.titulo }}</title>
+</head>
+<body>
+    <h1>{{ post.titulo }}</h1>
+    <h3>{{ post.data | date }}</h3>
+    <h3>Livro: {{ post.livro }}</h3>
+    <h3>Autor: {{ post.autor_livro }}</h3>
+    {{ post.conteudo | safe }}
+</body>
+</html>
+{% endblock content %}

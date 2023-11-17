@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title> {% block title %}{% endblock %} Leitura Crítica </title>
+</head>
+
+<body>
+    <header class="header">
+        <h1> <a href="{% url 'pages:index' %}"> Leitura Crítica </a> </h1>
+        <nav>
+            <li><a href="{% url 'pages:about' %}">Sobre o site</a></li>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+    <footer>
+        <small> &copy; Conteúdo protegido </small>
+    </footer>
+</body>
+
+</html>
