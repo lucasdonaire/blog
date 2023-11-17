@@ -4,7 +4,7 @@
 
   {% csrf_token %}
 
-  <p>
+  <!-- <p>
     <label for="id_titulo">Título:</label>
     <input type="text" name="titulo" id="id_titulo", value="{{post.titulo}}" />
   </p>
@@ -19,8 +19,8 @@
   <p>
     <label for="id_conteudo">Conteudo:</label>
     <input type="text" name="conteudo" id="id_conteudo" value="{{post.conteudo}}" />
-  </p>
-
+  </p> -->
+  {{form}}
 
   <button type="submit">Atualizar</button>
 </form>

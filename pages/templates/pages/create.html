@@ -5,7 +5,8 @@
   {% csrf_token %}
   <h3>Criar uma nova resenha</h3>
 
-  <p>
+  {{ form }}
+  <!-- <p>
     <label for="id_titulo">Título:</label>
     <input type="text" name="titulo" id="id_titulo" />
   </p>
@@ -20,7 +21,7 @@
   <p>
     <label for="id_conteudo">Conteudo:</label>
     <input type="text" name="conteudo" id="id_conteudo" />
-  </p>
+  </p> -->
 
 
   <button type="submit">Criar</button>
