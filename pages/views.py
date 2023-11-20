@@ -1,4 +1,4 @@
-from .models import Post
+from .models import Post, Comment
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -23,6 +23,10 @@ class read_post(generic.DetailView):
     context_object_name = 'post'
     slug_field = 'id'
     slug_url_kwarg = 'post_id'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_list'] = Comment.objects.filter(post_id=context['post'].id).order_by('-data')
+        return context
 
 class create_post(generic.CreateView):
     model = Post
@@ -51,3 +55,24 @@ class delete_post(generic.DeleteView):
 def about(request):
     context = {}
     return render(request, 'pages/about.html', context)
+
+class create_comment_form(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['author','texto']
+        labels = {'author': 'Usuário','texto': 'Comentário'}
+
+def create_comment(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if request.method == 'POST':
+        form = create_comment_form(request.POST)
+        if form.is_valid():
+            comment_texto = form.cleaned_data['texto']
+            comment_author = form.cleaned_data['author']
+            comment = Comment(texto=comment_texto,author=comment_author, post_id=post)
+            comment.save()
+            return HttpResponseRedirect(
+                reverse('pages:detail', args=(post.id,)))
+    form = create_comment_form(request.POST)
+    return render(request, 'pages/create_comment.html', {'form':form,'post':post})
+

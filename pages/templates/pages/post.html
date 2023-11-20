@@ -10,6 +10,21 @@
     <h3>Livro: {{ post.livro }}</h3>
     <h3>Autor: {{ post.autor_livro }}</h3>
     {{ post.conteudo | safe }}
+    <div>
+        <a href="{% url 'pages:createComment' post.id %}"> Comentar post</a>
+    </div>
+    <h3>Comentários</h3>
+    {% if comment_list %}
+    {% for comment in comment_list %}
+    <div class="article-box">
+        <article>
+          {{comment.autor}}
+          {{comment.data | date}}
+          {{comment.texto}}
+        </article>
+      </div>
+      {% endfor %}
+      {% endif %}
 </body>
 </html>
 {% endblock content %}

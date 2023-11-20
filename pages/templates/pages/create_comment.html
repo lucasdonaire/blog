@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+
+<form method="POST" action="{% url 'pages:createComment' post.id %}">
+  
+  {% csrf_token %}
+  <h3>Comentar essa resenha</h3>
+
+  {{ form.as_p }}
+
+
+  <button type="submit">Postar comentário</button>
+</form>
+{% endblock content %}
