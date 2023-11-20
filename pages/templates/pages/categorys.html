@@ -13,8 +13,8 @@ Categorias dos posts
         <header>
             <a href="{% url 'pages:detail-category' category.id %}">
                 <h2>{{category.name}}  </h2>
-                <h3> {{category.description}}  </h3>
             </a>
+            <p> {{category.description}}  </p>
         </header>
     </article>
     {% endfor %}
