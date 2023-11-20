@@ -11,20 +11,34 @@
     <h3>Autor: {{ post.autor_livro }}</h3>
     {{ post.conteudo | safe }}
     <div>
+      {% if post.category_set.all %}
+        <h3>Inclusa nas categorias: </h3>
+        <ul>
+        {% for category in post.category_set.all %}
+          <a href="{% url 'pages:detail-category' category.id %}">
+            <li>{{ category.name }}</li>
+          </a>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+    <div>
         <a href="{% url 'pages:createComment' post.id %}"> Comentar post</a>
     </div>
     <h3>Comentários</h3>
     {% if comment_list %}
     {% for comment in comment_list %}
     <div class="article-box">
-        <article>
-          {{comment.autor}}
-          {{comment.data | date}}
-          {{comment.texto}}
-        </article>
-      </div>
-      {% endfor %}
-      {% endif %}
+      <article>
+        {{comment.autor}}
+        {{comment.data | date}}
+        {{comment.texto}}
+      </article>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
 </body>
 </html>
 {% endblock content %}

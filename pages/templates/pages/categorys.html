@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Categorias dos posts
+{% endblock title %}
+
+{% block content %}
+
+<section>
+    {% for category in category_list %}
+    <hr>
+    <article>
+        <header>
+            <a href="{% url 'pages:detail-category' category.id %}">
+                <h2>{{category.name}}  </h2>
+                <h3> {{category.description}}  </h3>
+            </a>
+        </header>
+    </article>
+    {% endfor %}
+
+    <a href="{% url 'pages:create-category' %}"><button>Criar uma categoria</button></a>
+</section>
+
+{% endblock content %}

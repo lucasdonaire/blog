@@ -1,7 +1,7 @@
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from datetime import datetime
 from django import forms
@@ -76,3 +76,16 @@ def create_comment(request, post_id):
     form = create_comment_form(request.POST)
     return render(request, 'pages/create_comment.html', {'form':form,'post':post})
 
+class categoryListView(generic.ListView):
+    model = Category
+    template_name = 'pages/categorys.html'
+
+class categoryDetailView(generic.DetailView):
+    model = Category
+    template_name = 'pages/detail_category.html'
+    
+class categoryCreateView(generic.CreateView):
+    model = Category
+    template_name = 'pages/create_category.html'
+    fields = ['name', 'description', 'posts']
+    success_url = reverse_lazy('pages:categorys')
